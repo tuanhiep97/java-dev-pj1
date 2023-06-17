@@ -27,7 +27,7 @@ public class FileController {
         this.fileMapper = fileMapper;
     }
 
-    @PostMapping("/file")
+    @PostMapping
     public String uploadFile(@RequestParam("fileUpload") MultipartFile fileUpload, Principal principal, Model model) throws IOException {
         String username = principal.getName();
         Integer userId = userService.getUser(username).getUserId();
@@ -58,7 +58,7 @@ public class FileController {
         return "result";
     }
 
-    @GetMapping("/file")
+    @GetMapping
     public ResponseEntity download(@RequestParam String fileName, Principal principal){
         String username = principal.getName();
         Integer userId = userService.getUser(username).getUserId();
@@ -69,7 +69,7 @@ public class FileController {
                 .body(file.getFileData());
     }
 
-    @GetMapping("/file/delete")
+    @GetMapping("/delete")
     public String deleteFile(@RequestParam Integer fileId, Model model){
         String error = null;
 

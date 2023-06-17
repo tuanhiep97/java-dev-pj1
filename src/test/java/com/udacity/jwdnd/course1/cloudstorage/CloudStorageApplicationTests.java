@@ -93,7 +93,7 @@ class CloudStorageApplicationTests {
 		// You may have to modify the element "success-msg" and the sign-up 
 		// success message below depening on the rest of your code.
 		*/
-		Assertions.assertTrue(driver.findElement(By.id("success-msg")).getText().contains("You successfully signed up!"));
+		Assertions.assertTrue(driver.findElement(By.id("success")).getText().contains("You successfully signed up!"));
 	}
 
 	
@@ -141,7 +141,8 @@ class CloudStorageApplicationTests {
 	public void testRedirection() {
 		// Create a test account
 		doMockSignUp("Redirection","Test","RT","123");
-		
+
+		driver.get("http://localhost:" + this.port + "/login");
 		// Check if we have been redirected to the log in page.
 		Assertions.assertEquals("http://localhost:" + this.port + "/login", driver.getCurrentUrl());
 	}
@@ -281,12 +282,10 @@ class CloudStorageApplicationTests {
 		driver.get("http://localhost:" + this.port + "/home");
 		marker = wait.until(ExpectedConditions.elementToBeClickable(By.id("nav-notes-tab")));
 		driver.findElement(By.id("nav-notes-tab")).click();
-		boolean isExist;
-		try {
-			driver.findElement(By.id("note-row-title"));
-			isExist = true;
-		}catch(NoSuchElementException e){
-			isExist = false;
+		boolean isExist = true;
+		List<WebElement> elems = driver.findElements(By.id("note-row-title"));
+		if (elems.size() == 0) {
+			isExist=false;
 		}
 		Assertions.assertEquals(isExist, false);
 	}
@@ -362,12 +361,10 @@ class CloudStorageApplicationTests {
 		marker = wait.until(ExpectedConditions.elementToBeClickable(By.id("nav-credentials-tab")));
 		driver.findElement(By.id("nav-credentials-tab")).click();
 		marker = wait.until(ExpectedConditions.elementToBeClickable(By.id("upload-cred-btn")));
-		boolean isExist;
-		try {
-			driver.findElement(By.id("cred-delete"));
-			isExist = true;
-		}catch(NoSuchElementException e){
-			isExist = false;
+		boolean isExist = true;
+		List<WebElement> elems = driver.findElements(By.id("cred-delete"));
+		if (elems.size() == 0) {
+			isExist=false;
 		}
 		Assertions.assertEquals(isExist, false);
 	}

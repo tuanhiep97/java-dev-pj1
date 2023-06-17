@@ -6,41 +6,19 @@
 
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
 
-    <title>Sign Up</title>
+    <title>Result</title>
 </head>
 <body class="p-3 mb-2 bg-light text-black">
-<div class="container justify-content-center w-50 p-3" style="background-color: #eeeeee; margin-top: 5em;">
-    <div class="form-group">
-        <label><a th:href="@{/login}">Back to Login</a></label>
+<div class="container justify-content-center w-50 p-3" style="margin-top: 5em;">
+    <div th:if="${success}" class="alert alert-success fill-parent">
+        <h1 class="display-5">Success</h1>
+        <span>Your changes were successfully saved. Click <a th:href="@{/home}">here</a> to continue.</span>
     </div>
-
-    <h1 class="display-5">Sign Up</h1>
-    <form action="#" method="POST" th:action="@{/signup}">
-        <div th:if="${error}" class="alert alert-danger">
-            <span th:text="${error}"></span>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputFirstName">First Name</label>
-                <input type="input" name="firstName" class="form-control" id="inputFirstName" placeholder="Enter First Name" maxlength="20" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputLastName">Last Name</label>
-                <input type="input" name="lastName" class="form-control" id="inputLastName" placeholder="Enter Last Name" maxlength="20" required>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputUsername">Username</label>
-                <input type="input" name="username" class="form-control" id="inputUsername" placeholder="Enter Username" maxlength="20" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword">Password</label>
-                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Enter Password" maxlength="20" required>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
+    <div th:if="${error}" class="alert alert-danger fill-parent">
+        <h1 class="display-5">Error</h1>
+        <span th:text="${error}"></span>
+        <span>Click <a th:href="@{/home}">here</a> to continue.</span>
+    </div>
 </div>
 </body>
 </html>

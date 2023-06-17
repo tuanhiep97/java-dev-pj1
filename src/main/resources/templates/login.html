@@ -12,7 +12,7 @@
 <div class="container justify-content-center w-25 p-3" style="background-color: #eeeeee; margin-top: 5em;">
     <h1 class="display-5">Login</h1>
     <form action="#" th:action="@{/login}" method="POST">
-        <div th:if="${success}" class="alert alert-dark">
+        <div id="success" th:if="${success}" class="alert alert-dark">
             You successfully signed up!
         </div>
         <div th:if="${param.error}" class="alert alert-danger">
@@ -29,7 +29,7 @@
             <label for="inputPassword">Password</label>
             <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Enter Password" maxlength="20" required>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" id="login-button">Login</button>
     </form>
 
     <div class="form-group" style="margin-top: 0.5em;">
